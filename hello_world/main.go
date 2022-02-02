@@ -5,25 +5,44 @@ import (
 	"net/http"
 )
 
-func main() {
+const portNumber = ":8080"
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		n, err := fmt.Fprintf(w, "Hello World!")
-		if err != nil {
-			fmt.Println(err)
-		}
-		fmt.Println(fmt.Sprintf("Number of bytes written: %d", n))
-	})
-
-	_ = http.ListenAndServe(":8080", nil)
+//Home is the home page handler
+func Home(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "This is the home page")
 }
 
-//In terminal
-// ramie@ramie:~/go/src/Web_Part1/hello_world$ go run main.go
-// Number of bytes written: 12
-// Number of bytes written: 12
+//About is the about page handler
+func About(w http.ResponseWriter, r *http.Request) {
+	sum := addValues(2, 2)
+	_, _ = fmt.Fprintf(w, fmt.Sprintf("This is the about page and 2 + 2 is: %d", sum))
+}
 
-//In browsser
+//main is the main application function
+func addValues(x, y int) int {
+	return x + y
+}
+
+func main() {
+
+	http.HandleFunc("/", Home)
+	http.HandleFunc("/about", About)
+
+	fmt.Println(fmt.Sprintf("Starting application on port: %s", portNumber))
+	_ = http.ListenAndServe(portNumber, nil)
+}
+
+
+//In terminal
+// ramie@ramie:~/go/src/Web_Part1/hello_world(master)$ go run main.go
+// Starting application on port: :8080
+
+
+//in browser
 // http://localhost:8080/
-// Hello World!
-// Ctrl+C - cancel
+// This is the home page
+
+// http://localhost:8080/about
+// This is the about page and 2 + 2 is: 4
+
+//Ctrl+C - cancel the process
