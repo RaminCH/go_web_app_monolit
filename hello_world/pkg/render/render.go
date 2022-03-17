@@ -9,28 +9,27 @@ import (
 	"text/template"
 
 	"github.com/RaminCH/go-course/pkg/config"
+	"github.com/RaminCH/go-course/pkg/models"
 )
 
-var functions = template.FuncMap{
-
-}
+var functions = template.FuncMap{}
 
 var app *config.AppConfig
 
 //NewTemplates sets the configfor the template package
-func NewTemplates(a *config.AppConfig){
+func NewTemplates(a *config.AppConfig) {
 	app = a
 }
 
 //RenderTemplate renders template using html/template
-func RenderTemplate(w http.ResponseWriter, tmpl string) {
+func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData) {
 
 	var tc map[string]*template.Template
-	if app.UseCache{
+	if app.UseCache {
 		//get the template cache from the app config
 		tc = app.TemplateCache
 	} else {
-		tc , _ = CreateTemplateCache()
+		tc, _ = CreateTemplateCache()
 	}
 
 	t, ok := tc[tmpl]
@@ -40,7 +39,7 @@ func RenderTemplate(w http.ResponseWriter, tmpl string) {
 
 	buf := new(bytes.Buffer)
 
-	_ = t.Execute(buf, nil)
+	_ = t.Execute(buf, td)
 
 	_, err := buf.WriteTo(w)
 	if err != nil {

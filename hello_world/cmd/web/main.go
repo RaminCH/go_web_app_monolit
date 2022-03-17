@@ -40,8 +40,12 @@ func main() {
 // Starting application on port: :8080
 
 
+
 // This is the about page
 
 // This is a test line
 
-// This is a test line2  - is added via "app.UseCache = false"
+// This is a test line2
+
+// This came from the template: Hello, again. // sending data from handlers to template
+
