@@ -2,14 +2,28 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
+	"github.com/RaminCH/go-course/pkg/config"
 	"github.com/RaminCH/go-course/pkg/handlers"
+	"github.com/RaminCH/go-course/pkg/render"
 )
 
 const portNumber = ":8080"
 
 func main() {
+
+	var app config.AppConfig
+
+	tc, err := render.CreateTemplateCache()
+	if err != nil {
+		log.Fatal("cannot create template cache")
+	}
+
+	app.TemplateCache = tc
+
+	render.NewTemplates(&app) // "render component" access to "app config"
 
 	http.HandleFunc("/", handlers.Home)
 	http.HandleFunc("/about", handlers.About)
@@ -18,5 +32,5 @@ func main() {
 	_ = http.ListenAndServe(portNumber, nil)
 }
 
-// ramie@ramie:~/go/src/Web_Part1/hello_world(master)$ go run cmd/web/*.go
+// ramie@ramie:~/go/src/Web_Part1/hello_world(master)$ go run cmd/web/*go
 // Starting application on port: :8080
