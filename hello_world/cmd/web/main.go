@@ -29,23 +29,21 @@ func main() {
 
 	render.NewTemplates(&app) // "render component" access to "app config"
 
-	http.HandleFunc("/", handlers.Repo.Home)
-	http.HandleFunc("/about", handlers.Repo.About)
+	
 
 	fmt.Println(fmt.Sprintf("Starting application on port: %s", portNumber))
-	_ = http.ListenAndServe(portNumber, nil)
+	
+
+	srv := &http.Server{		//srv - serving
+		Addr: portNumber,
+		Handler: routes(&app),
+	}
+
+	err = srv.ListenAndServe()
+	log.Fatal(err)
 }
 
 // ramie@ramie:~/go/src/Web_Part1/hello_world(master)$ go run cmd/web/*go
 // Starting application on port: :8080
 
-
-
-// This is the about page
-
-// This is a test line
-
-// This is a test line2
-
-// This came from the template: Hello, again. // sending data from handlers to template
 
