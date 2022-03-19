@@ -43,11 +43,7 @@ func main() {
 	log.Fatal(err)
 }
 
-// ramin@ramin:~/go/src/Web_Part1/hello_world(master)$ go run cmd/web/*.go
-// Starting application on port: :8080
-// Hit the page
-// Hit the page							//loaded/refreshed page 3 times (check middleware.go and routes.go)
-// Hit the page
-// ^Csignal: interrupt
 
+// ramie@ramie:~/go/src/Web_Part1/hello_world(master)$ go run cmd/web/*.go
+// Starting application on port: :8080
 

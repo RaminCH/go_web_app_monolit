@@ -21,7 +21,7 @@ func routes(app *config.AppConfig) http.Handler {
 	mux := chi.NewRouter()
 
 	mux.Use(middleware.Recoverer) //chi middleware(method) that gracefully absorbs panics and prints the stack trace
-	mux.Use(WriteToConsole) //custom middleware (check from middleware.go) 
+	mux.Use(NoSurf)
 
 	mux.Get("/", handlers.Repo.Home)
 	mux.Get("/about", handlers.Repo.About)
