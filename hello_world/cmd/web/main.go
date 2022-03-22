@@ -60,3 +60,6 @@ func main() {
 
 // ramie@ramie:~/go/src/Web_Part1/hello_world(master)$ go run cmd/web/*.go
 // Starting application on port: :8080
+
+// visit first about page - it will request to visit home page
+// then after visiting home page just go back to about page -> you will see your ip address
