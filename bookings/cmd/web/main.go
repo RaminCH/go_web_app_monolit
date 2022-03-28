@@ -1,0 +1,65 @@
+package main
+
+import (
+	"fmt"
+	"log"
+	"net/http"
+	"time"
+
+	"github.com/RaminCH/bookings/pkg/config"
+	"github.com/RaminCH/bookings/pkg/handlers"
+	"github.com/RaminCH/bookings/pkg/render"
+	"github.com/alexedwards/scs/v2"
+)
+
+const portNumber = ":8080"
+
+var app config.AppConfig
+
+var session *scs.SessionManager
+
+func main() {
+
+	//session
+	//change it to true when in production mode
+	app.InProduction = false
+
+	session = scs.New()
+	session.Lifetime = 24 * time.Hour
+	session.Cookie.Persist = true
+	session.Cookie.SameSite = http.SameSiteLaxMode
+	// session.Cookie.Secure = false
+	session.Cookie.Secure = app.InProduction
+
+	app.Session = session
+	//end session
+
+	tc, err := render.CreateTemplateCache()
+	if err != nil {
+		log.Fatal("cannot create template cache")
+	}
+
+	app.TemplateCache = tc
+	app.UseCache = false
+
+	repo := handlers.NewRepo(&app)
+	handlers.NewHandlers(repo)
+
+	render.NewTemplates(&app) // "render component" access to "app config"
+
+	fmt.Println(fmt.Sprintf("Starting application on port: %s", portNumber))
+
+	srv := &http.Server{ //srv - serving
+		Addr:    portNumber,
+		Handler: routes(&app),
+	}
+
+	err = srv.ListenAndServe()
+	log.Fatal(err)
+}
+
+// ramie@ramie:~/go/src/Web_Part1/hello_world(master)$ go run cmd/web/*.go
+// Starting application on port: :8080
+
+// visit first about page - it will request to visit home page
+// then after visiting home page just go back to about page -> you will see your ip address
