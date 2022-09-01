@@ -6,9 +6,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/RaminCH/bookings/pkg/config"
-	"github.com/RaminCH/bookings/pkg/models"
-	"github.com/RaminCH/bookings/pkg/render"
+	"github.com/RaminCH/bookings/internal/config"
+	"github.com/RaminCH/bookings/internal/models"
+	"github.com/RaminCH/bookings/internal/render"
 )
 
 //Implementing Repository pattern

@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/RaminCH/bookings/pkg/config"
-	"github.com/RaminCH/bookings/pkg/handlers"
-	"github.com/RaminCH/bookings/pkg/render"
+	"github.com/RaminCH/bookings/internal/config"
+	"github.com/RaminCH/bookings/internal/handlers"
+	"github.com/RaminCH/bookings/internal/render"
 	"github.com/alexedwards/scs/v2"
 )
 

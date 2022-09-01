@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 	"text/template"
 
-	"github.com/RaminCH/bookings/pkg/config"
-	"github.com/RaminCH/bookings/pkg/models"
+	"github.com/RaminCH/bookings/internal/config"
+	"github.com/RaminCH/bookings/internal/models"
 	"github.com/justinas/nosurf"
 )
 

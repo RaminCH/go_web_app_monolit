@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/RaminCH/bookings/pkg/config"
-	"github.com/RaminCH/bookings/pkg/handlers"
+	"github.com/RaminCH/bookings/internal/config"
+	"github.com/RaminCH/bookings/internal/handlers"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 )
