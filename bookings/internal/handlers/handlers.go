@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	"github.com/RaminCH/bookings/internal/config"
+	"github.com/RaminCH/bookings/internal/forms"
 	"github.com/RaminCH/bookings/internal/models"
 	"github.com/RaminCH/bookings/internal/render"
 )
@@ -62,8 +63,16 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 
 //Reservation renders the make reservation page and displays form
 func (m *Repository) Reservation(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, r, "make-reservation.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "make-reservation.page.tmpl", &models.TemplateData{
+		Form: forms.New(nil),
+	})
 }
+
+//PostReservation handles the posting of the reservation
+func (m *Repository) PostReservation(w http.ResponseWriter, r *http.Request) {
+	 
+}
+
 
 //Generals renders the room page
 func (m *Repository) Generals(w http.ResponseWriter, r *http.Request) {
