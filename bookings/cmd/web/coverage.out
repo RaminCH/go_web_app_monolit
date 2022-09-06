@@ -1,0 +1,12 @@
+mode: set
+github.com/RaminCH/bookings/cmd/web/main.go:23.13,26.16 2 0
+github.com/RaminCH/bookings/cmd/web/main.go:31.2,39.16 4 0
+github.com/RaminCH/bookings/cmd/web/main.go:26.16,28.3 1 0
+github.com/RaminCH/bookings/cmd/web/main.go:42.18,62.16 10 1
+github.com/RaminCH/bookings/cmd/web/main.go:67.2,76.12 6 1
+github.com/RaminCH/bookings/cmd/web/main.go:62.16,65.3 2 0
+github.com/RaminCH/bookings/cmd/web/middleware.go:11.53,12.71 1 0
+github.com/RaminCH/bookings/cmd/web/middleware.go:12.71,15.3 2 0
+github.com/RaminCH/bookings/cmd/web/middleware.go:19.45,30.2 3 1
+github.com/RaminCH/bookings/cmd/web/middleware.go:33.50,35.2 1 1
+github.com/RaminCH/bookings/cmd/web/routes.go:12.49,49.2 18 1

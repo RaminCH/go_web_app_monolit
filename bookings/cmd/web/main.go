@@ -22,6 +22,25 @@ var session *scs.SessionManager
 
 func main() {
 
+	err := run()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+
+	fmt.Println(fmt.Sprintf("Starting application on port: %s", portNumber))
+
+	srv := &http.Server{ //srv - serving
+		Addr:    portNumber,
+		Handler: routes(&app),
+	}
+
+	err = srv.ListenAndServe()
+	log.Fatal(err)
+}
+
+func run() error {
+
 	//What am I going to put in the session
 	gob.Register(models.Reservation{})
 
@@ -42,6 +61,7 @@ func main() {
 	tc, err := render.CreateTemplateCache()
 	if err != nil {
 		log.Fatal("cannot create template cache")
+		return err
 	}
 
 	app.TemplateCache = tc
@@ -52,15 +72,8 @@ func main() {
 
 	render.NewTemplates(&app) // "render component" access to "app config"
 
-	fmt.Println(fmt.Sprintf("Starting application on port: %s", portNumber))
 
-	srv := &http.Server{ //srv - serving
-		Addr:    portNumber,
-		Handler: routes(&app),
-	}
-
-	err = srv.ListenAndServe()
-	log.Fatal(err)
+	return nil
 }
 
 // ramie@ramie:~/go/src/Web_Part1/hello_world(master)$ go run cmd/web/*.go
