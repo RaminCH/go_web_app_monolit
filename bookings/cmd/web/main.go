@@ -17,9 +17,9 @@ import (
 const portNumber = ":8080"
 
 var app config.AppConfig
-
 var session *scs.SessionManager
 
+// main is the main function
 func main() {
 
 	err := run()
@@ -27,32 +27,32 @@ func main() {
 		log.Fatal(err)
 	}
 
+	fmt.Println(fmt.Sprintf("Staring application on port %s", portNumber))
 
-	fmt.Println(fmt.Sprintf("Starting application on port: %s", portNumber))
-
-	srv := &http.Server{ //srv - serving
+	srv := &http.Server{
 		Addr:    portNumber,
 		Handler: routes(&app),
 	}
 
 	err = srv.ListenAndServe()
+	if err != nil {
 	log.Fatal(err)
+}
 }
 
 func run() error {
-
-	//What am I going to put in the session
+	// what am I going to put in the session
 	gob.Register(models.Reservation{})
 
 	//session
 	//change it to true when in production mode
 	app.InProduction = false
 
+	// set up the session
 	session = scs.New()
 	session.Lifetime = 24 * time.Hour
 	session.Cookie.Persist = true
 	session.Cookie.SameSite = http.SameSiteLaxMode
-	// session.Cookie.Secure = false
 	session.Cookie.Secure = app.InProduction
 
 	app.Session = session
