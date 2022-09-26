@@ -51,8 +51,8 @@ func TestHandlers(t *testing.T) {
 }
 
 
-xxx@xxx:~/go/src/Web_Part1/bookings/internal/handlers(master)$ go test -v 
-=== RUN   TestHandlers
---- PASS: TestHandlers (0.03s)
-PASS
-ok      github.com/RxxxxxH/bookings/internal/handlers   0.042s
+// xxx@xxx:~/go/src/Web_Part1/bookings/internal/handlers(master)$ go test -v 
+// === RUN   TestHandlers
+// --- PASS: TestHandlers (0.03s)
+// PASS
+// ok      github.com/RxxxxxH/bookings/internal/handlers   0.042s
