@@ -105,5 +105,5 @@ func TestHandlers(t *testing.T) {
 // xxx@xxx:~/go/src/Web_Part1/bookings(master)$ go run cmd/web/main.go /cmd/web/middleware.go /cmd/web/routes.go
 // stat /cmd/web/middleware.go: no such file or directory
 // xxx@xxx:~/go/src/Web_Part1/bookings(master)$ go run cmd/web/main.go cmd/web/middleware.go cmd/web/routes.go
-// Staring application on port :8080
+// Staring application on port :8080 
 // ^Csignal: interrupt
