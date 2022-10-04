@@ -38,3 +38,19 @@ func TestMain(m *testing.M) {
 
 	os.Exit(m.Run())
 }
+
+type myWriter struct{}
+
+func (tw *myWriter) Header() http.Header {				//check/navigate to RenderTemplate(ResponseWriter) in render.go
+	var h http.Header
+	return h
+}
+
+func (tw *myWriter) WriteHeader(int) {
+
+}
+
+func (tw *myWriter) Write(b []byte) (int, error) {
+	length := len(b)
+	return length, nil 
+}

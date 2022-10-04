@@ -2,8 +2,8 @@ package render
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
-	"log"
 	"net/http"
 	"path/filepath"
 	"text/template"
@@ -34,7 +34,7 @@ func AddDefaultData(td *models.TemplateData, r *http.Request) *models.TemplateDa
 }
 
 // RenderTemplate renders a template
-func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, td *models.TemplateData) {
+func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, td *models.TemplateData) error {
 	var tc map[string]*template.Template
 
 	if app.UseCache {
@@ -46,7 +46,7 @@ func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, td *mod
 
 	t, ok := tc[tmpl]
 	if !ok {
-		log.Fatal("Could not get template from template cache")
+		return errors.New("can't get template from cache")
 	}
 
 	buf := new(bytes.Buffer)
@@ -58,7 +58,10 @@ func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, td *mod
 	_, err := buf.WriteTo(w)
 	if err != nil {
 		fmt.Println("Error writing template to browser", err)
+		return nil
 	}
+
+	return nil
 
 }
 
@@ -98,3 +101,11 @@ func CreateTemplateCache() (map[string]*template.Template, error) {
 
 	return myCache, nil
 }
+
+// xxx@xxx:~/go/src/Web_Part1/bookings/internal/render(master)$ go test -v
+// === RUN   TestAddDefaultData
+// --- PASS: TestAddDefaultData (0.00s)
+// === RUN   TestRenderTemplate
+// --- PASS: TestRenderTemplate (0.01s)
+// PASS
+// ok      github.com/RaminCH/bookings/internal/render     0.019s
