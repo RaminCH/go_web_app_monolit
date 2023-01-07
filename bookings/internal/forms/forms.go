@@ -64,3 +64,4 @@ func (f *Form) IsEmail(field string) {
 		f.Errors.Add(field, "Invalid Email Address")
 	}
 }
+

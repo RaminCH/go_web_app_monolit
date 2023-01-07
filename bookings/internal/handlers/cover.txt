@@ -1,0 +1,22 @@
+mode: set
+github.com/RaminCH/bookings/internal/handlers/handlers.go:26.47,30.2 1 1
+github.com/RaminCH/bookings/internal/handlers/handlers.go:33.33,35.2 1 1
+github.com/RaminCH/bookings/internal/handlers/handlers.go:38.67,46.2 3 1
+github.com/RaminCH/bookings/internal/handlers/handlers.go:49.68,62.2 5 1
+github.com/RaminCH/bookings/internal/handlers/handlers.go:65.74,74.2 4 1
+github.com/RaminCH/bookings/internal/handlers/handlers.go:77.78,79.16 2 1
+github.com/RaminCH/bookings/internal/handlers/handlers.go:84.2,97.19 6 1
+github.com/RaminCH/bookings/internal/handlers/handlers.go:109.2,111.66 2 1
+github.com/RaminCH/bookings/internal/handlers/handlers.go:79.16,82.3 2 0
+github.com/RaminCH/bookings/internal/handlers/handlers.go:97.19,107.3 4 0
+github.com/RaminCH/bookings/internal/handlers/handlers.go:115.71,117.2 1 1
+github.com/RaminCH/bookings/internal/handlers/handlers.go:120.69,122.2 1 1
+github.com/RaminCH/bookings/internal/handlers/handlers.go:125.75,127.2 1 1
+github.com/RaminCH/bookings/internal/handlers/handlers.go:130.79,135.2 3 1
+github.com/RaminCH/bookings/internal/handlers/handlers.go:143.79,150.16 3 1
+github.com/RaminCH/bookings/internal/handlers/handlers.go:154.2,155.14 2 1
+github.com/RaminCH/bookings/internal/handlers/handlers.go:150.16,152.3 1 0
+github.com/RaminCH/bookings/internal/handlers/handlers.go:159.70,161.2 1 1
+github.com/RaminCH/bookings/internal/handlers/handlers.go:164.81,166.9 2 1
+github.com/RaminCH/bookings/internal/handlers/handlers.go:173.2,180.4 4 0
+github.com/RaminCH/bookings/internal/handlers/handlers.go:166.9,171.3 4 1
