@@ -3,10 +3,11 @@ package handlers
 import (
 	"encoding/gob"
 	"fmt"
-	"text/template"
 	"log"
 	"net/http"
+	"os"
 	"path/filepath"
+	"text/template"
 
 	// "text/template"
 	"time"
@@ -32,6 +33,12 @@ func getRoutes() http.Handler {
 	//session
 	//change it to true when in production mode
 	app.InProduction = false
+
+	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
+	app.InfoLog = infoLog
+
+	errorLog := log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
+	app.ErrorLog = errorLog
 
 	// set up the session
 	session = scs.New()

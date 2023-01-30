@@ -5,10 +5,12 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/RaminCH/bookings/internal/config"
 	"github.com/RaminCH/bookings/internal/handlers"
+	"github.com/RaminCH/bookings/internal/helpers"
 	"github.com/RaminCH/bookings/internal/models"
 	"github.com/RaminCH/bookings/internal/render"
 	"github.com/alexedwards/scs/v2"
@@ -18,6 +20,8 @@ const portNumber = ":8080"
 
 var app config.AppConfig
 var session *scs.SessionManager
+var infoLog *log.Logger
+var errorLog *log.Logger
 
 // main is the main function
 func main() {
@@ -36,8 +40,8 @@ func main() {
 
 	err = srv.ListenAndServe()
 	if err != nil {
-	log.Fatal(err)
-}
+		log.Fatal(err)
+	}
 }
 
 func run() error {
@@ -47,6 +51,12 @@ func run() error {
 	//session
 	//change it to true when in production mode
 	app.InProduction = false
+
+	infoLog = log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
+	app.InfoLog = infoLog
+
+	errorLog = log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
+	app.ErrorLog = errorLog
 
 	// set up the session
 	session = scs.New()
@@ -69,9 +79,8 @@ func run() error {
 
 	repo := handlers.NewRepo(&app)
 	handlers.NewHandlers(repo)
-
 	render.NewTemplates(&app) // "render component" access to "app config"
-
+	helpers.NewHelpers(&app)
 
 	return nil
 }

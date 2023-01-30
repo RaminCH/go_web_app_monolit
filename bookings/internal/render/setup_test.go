@@ -2,6 +2,7 @@ package render
 
 import (
 	"encoding/gob"
+	"log"
 	"net/http"
 	"os"
 	"testing"
@@ -24,6 +25,12 @@ func TestMain(m *testing.M) {
 	//change it to true when in production mode
 	testApp.InProduction = false
 
+	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
+	testApp.InfoLog = infoLog
+
+	errorLog := log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
+	testApp.ErrorLog = errorLog
+
 	// set up the session
 	session = scs.New()
 	session.Lifetime = 24 * time.Hour
@@ -41,7 +48,7 @@ func TestMain(m *testing.M) {
 
 type myWriter struct{}
 
-func (tw *myWriter) Header() http.Header {				//check/navigate to RenderTemplate(ResponseWriter) in render.go
+func (tw *myWriter) Header() http.Header { //check/navigate to RenderTemplate(ResponseWriter) in render.go
 	var h http.Header
 	return h
 }
@@ -52,5 +59,5 @@ func (tw *myWriter) WriteHeader(int) {
 
 func (tw *myWriter) Write(b []byte) (int, error) {
 	length := len(b)
-	return length, nil 
+	return length, nil
 }
